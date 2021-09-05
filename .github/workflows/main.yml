@@ -29,8 +29,10 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "vmcs"
           heroku_email: "carlangelopamparonievarez@gmail.com"
-          justlogin: true
-      - run: heroku auth:whoami
+          heroku_password: "Zaq1Xsw2++"
+          heroku_repo_name: "vmcs"
+          heroku_repo_url: "https://git.heroku.com/vmcs.git"
+          heroku_repo_branch: "master"
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
