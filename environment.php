@@ -1,5 +1,9 @@
 <?php
+
+
 require __DIR__ . '/vendor/autoload.php';
+
+
 
 $repository = Dotenv\Repository\RepositoryBuilder::createWithNoAdapters()
     ->addAdapter(Dotenv\Repository\Adapter\EnvConstAdapter::class)
@@ -9,6 +13,7 @@ $repository = Dotenv\Repository\RepositoryBuilder::createWithNoAdapters()
 
 $dotenv = Dotenv\Dotenv::create($repository, __DIR__);
 $dotenv->load();
+
 
 /*
 This is the dot env file config

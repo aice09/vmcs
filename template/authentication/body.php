@@ -32,6 +32,8 @@
     <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">    
     <!--Font-Awesome 4.7.0-->
     <link rel="stylesheet" type="text/css" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <!--Font-Awesome 4.7.0-->
+    <link rel="stylesheet" type="text/css" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
     <!--/////////////////////////////////////////////////////////////////////
                                 ACE SCRIPTS
     /////////////////////////////////////////////////////////////////////-->
@@ -41,6 +43,8 @@
     <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <!--JQuery Form Validator-->
     <script type="text/javascript" src="node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
+    <!--Sweet Alert 2-->
+    <script type="text/javascript" src="node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 </head>
 
 <body>  
@@ -50,3 +54,43 @@
 </body>
 
 </html>
+
+<style type="text/css"> 
+    body {
+        background: #F8F7F4;
+        background: url('src/img/fixtures/login_background/login_img1.jpg') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+    .pallet{
+        border: none;
+        box-shadow: none;
+        padding: 50px !important;
+        background: #FCFBFA !important;
+        /*background-color: #f1f0eb !important;*/
+        border-radius: 8px 8px 8px 8px;
+    }
+    svg {
+        width: 252;
+        height: 312px;
+    }
+    .margin-top-30px {
+        margin-top: 30px;
+    }
+    .forgots {
+        color: black;
+    }
+    .forgots:hover {
+        color: black;
+        text-decoration: none;
+    }
+    .logininfo{
+        color: #043673;
+    }
+    .logininfo:hover{
+        color: #043673;
+        text-decoration: none;
+    }
+</style>

@@ -47,4 +47,5 @@ switch ($view) {
 }
 
 require_once 'template/sys_admin/body.php';
+require_once 'config/idle.php';
 ?>

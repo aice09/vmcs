@@ -38,6 +38,7 @@
 ///////////////////////////////////////////////////////////
 //            Gulp or Dev Dependencies ...               //
 ///////////////////////////////////////////////////////////
+
 const gulp = require('gulp');
 const browserSync = require('browser-sync').create();
 const autoprefixer = require('gulp-autoprefixer');
@@ -53,6 +54,8 @@ const sass = require('gulp-sass')(require('sass'));
 const sassGlob = require('gulp-sass-glob');
 const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
+const fs = require('fs');
+const generator = require('generate-password');
 
 ///////////////////////////////////////////////////////////
 //                Repo Paths Sitemap ...                 //
@@ -69,6 +72,7 @@ var paths = {
 		dbdumps: 'src/dumps/**/*.*',
 		imgs: 'src/img/**/*.+(png|jpg|gif|svg)',
 		scss: 'src/scss/**/*.scss',
+		config: 'config',
 	},
 	dist: {
 		root: 'dist',
@@ -78,6 +82,18 @@ var paths = {
 		dbdumps: 'dist/dumps',
 	},
 };
+
+///////////////////////////////////////////////////////////
+//                Password Generate...                   //
+///////////////////////////////////////////////////////////
+//Write password in text file
+var password = generator.generate({
+	length: 50,
+	numbers: true,
+	symbols: false,
+	uppercase: true,
+	lowercase: true
+});
 
 ///////////////////////////////////////////////////////////
 //      Gulp Task and Pipings Starts Here ...            //
@@ -166,8 +182,24 @@ gulp.task('dbdumps', () => {
 /* clean dist
    use to delete your entire dist folder
 */
-gulp.task('clean', function() {
-	return gulp.src(paths.dist.root).pipe(clean());
+gulp.task('cleandist', function() {
+	return gulp.src(paths.dist.root).pipe(clean());	
+});
+
+gulp.task('cleancss', function() {
+	return gulp.src(paths.extra.css).pipe(clean());
+});
+
+gulp.task('clean', gulp.series('cleandist', 'cleancss'));
+
+//Write password in text file
+gulp.task('write-password', function() {	
+	fs.writeFile(paths.src.config+'/defaultadminpassword.txt', password, function(err) {
+		if (err) {
+			return console.log(err);
+		}
+		console.log('Password file was created successfully');
+	});
 });
 
 // Prepare all assets for production
@@ -175,7 +207,7 @@ gulp.task('build', gulp.series('sass', 'css', 'js', 'img', 'dbdumps'));
 
 //Default task is to watch scss, css, and js
 gulp.task('default', function () {
-  gulp.watch(paths.src.scss, gulp.series('sass'));
+  	gulp.watch(paths.src.scss, gulp.series('sass'));
 	gulp.watch(paths.src.css, gulp.series('css'));
 	gulp.watch(paths.src.js, gulp.series('js'));
 });
