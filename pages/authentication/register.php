@@ -14,7 +14,44 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Username" name="user_username" id="user_username" />
+                            <span id="check-e"></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="First Name" name="user_firstname" id="user_firstname" />
+                            <span id="check-e"></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Middle Name" name="user_middlename" id="user_middlename" />
+                            <span id="check-e"></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Last Name" name="user_lastname" id="user_lastname" />
+                            <span id="check-e"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
                             <input type="text" class="form-control" placeholder="Email" name="user_email" id="user_email" />
+                            <span id="check-e"></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password" name="user_password" id="user_password" />
+                            <span id="check-e"></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Confirm Password" name="user_confirmpassword" id="user_confirmpassword" />
                             <span id="check-e"></span>
                         </div>
                     </div>
@@ -42,13 +79,63 @@
         /* handling form validation */
         $("#login-form").validate({
             rules: {
+                user_username: {
+                    required: true,
+                    minlength: 5
+                },
+                user_firstname: {
+                    required: true,
+                    minlength: 2
+                },
+                user_middlename: {
+                    required: true,
+                    minlength: 2
+                },
+                user_lastname: {
+                    required: true,
+                    minlength: 2
+                },
                 user_email: {
                     required: true,
                     email: true
-                },  
+                },
+                user_password: {
+                    required: true,
+                    minlength: 5
+                },
+                user_confirmpassword: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: "#user_password"
+                }  
             },
-            messages: { 
-                user_employeeid: "Please enter an email",
+            messages: {
+                user_username: {
+                    required: "Please enter a username",
+                    minlength: "Your username must consist of at least 5 characters"
+                },
+                user_firstname: {
+                    required: "Please enter your first name",
+                    minlength: "Your first name must consist of at least 2 characters"
+                },
+                user_middlename: {
+                    required: "Please enter your middle name",
+                    minlength: "Your middle name must consist of at least 2 characters"
+                },
+                user_lastname: {
+                    required: "Please enter your last name",
+                    minlength: "Your last name must consist of at least 2 characters"
+                },
+                user_email: "Please enter a valid email address",
+                user_password: {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 5 characters long"
+                },
+                user_confirmpassword: {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 5 characters long",
+                    equalTo: "Please enter the same password as above"
+                },
             },
             submitHandler: loginsubmitForm   
         });    
@@ -63,22 +150,19 @@
                 success: function(data, status) {
                     console.log(data);
                     var newdata = JSON.parse(data);
-                    //display passed data
-                   
-                    //parse data
-                    /* var newdata = JSON.parse(data);
 
-                   
-                    //console log parse data message
-                    console.log(newdata.json.message);
- */
-console.log(newdata.code);
+                    console.log(newdata.code);
 
 
                     if (newdata.code == "exist") {
                         alert("Email already exist");
                     } else {
-                        alert("Email available");
+                        //alert("Email available");
+                        Swal.fire({
+                            icon: 'success',
+                            title:'Good job!',
+                            text: 'You successfully registered!'
+                        })
                     }
                 }
             });
