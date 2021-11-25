@@ -7,7 +7,7 @@ if(isset($_POST['login_button'])) {
 	$user_password = trim($_POST['user_password']);
 	
 	$sql = "SELECT * FROM users
-			WHERE userstatus='enable'
+			WHERE userstatus='activated'
 			AND username='$user_id'";
 
 	$resultset = mysqli_query($db, $sql) or die("database error:". mysqli_error($db));
@@ -39,7 +39,7 @@ if(isset($_POST['login_button'])) {
 		$_SESSION['system_usermiddlename'] = $row['usermiddlename'];
 		$_SESSION['system_userlastname'] = $row['userlastname'];
 		$_SESSION['system_logged_in'] = true;	
-		$_SESSION['timestamp']=time(); //use this timestamp to check if the user was inactive for too long
+		//$_SESSION['timestamp']=time(); //use this timestamp to check if the user was inactive for too long
 		
 	} else {		
 		$response = 999; 

@@ -157,12 +157,13 @@
                     if (newdata.code == "exist") {
                         alert("Email already exist");
                     } else {
-                        //alert("Email available");
-                        Swal.fire({
-                            icon: 'success',
-                            title:'Good job!',
-                            text: 'You successfully registered!'
-                        })
+                        var conf = confirm("Successfully registered. Click OK to redirect to login page");
+                        if (conf == true) {
+                            setTimeout(' window.location.href = "login.php"; ',1000);                            
+                        } else {
+                            setTimeout(' window.location.href = "login.php"; ',1000);
+                        }
+                        
                     }
                 }
             });

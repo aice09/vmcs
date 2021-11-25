@@ -23,7 +23,10 @@ if (isset($_POST['submit_btn'])) {
         $data['code'] = "exist";      
 
     } else {
+        CRYPT_BLOWFISH or die('No blowfish here.');
+
         //Hashing the password
+        $password = $_POST['user_password'];
         $blowfish_pre='$2a$05$';
         $blowfish_end='$';
 
@@ -78,7 +81,7 @@ if (isset($_POST['submit_btn'])) {
         } else {
             $response = 'ok';
         }
-        echo json_encode($response);
+        //echo json_encode($response);
 
         $data['message'] = "Email available";
         $data['code'] = "available";
@@ -97,13 +100,14 @@ if (isset($_POST['submit_btn'])) {
         $mail->addReplyTo('ragayveterinaryhealthcenter@gmail.com', 'Ragay Veterinary Health Center');
         $mail->addAddress($user_email, '');
         $mail->Subject = 'Email Verification';
-        $mail->msgHTML("<html><head><title>Email Verification</title></head><body><p>Hi,</p><p>Thank you for registering with us. Please click on the link below to verify your email address.</p><p><a href='http://localhost/php_project/pages/authentication/verify_email.php?email=$user_email'>Verify Email</a></p><p>Thank you,</p><p>Team</p></body></html>");
+        $mail->msgHTML("<html><head><title>Email Verification</title></head><body><p>Hi,</p><p>Thank you for registering with us. Please click on the link below to verify your email address.</p><p><a href='http://localhost:81/vmcs/login.php?page=verifyemail&email=$user_email&hash=$usersalt'>Verify Email</a></p><p>Thank you,</p><p>Team</p></body></html>");
         $mail->AltBody = 'Thank you for registering with us. Please click on the link below to verify your email address.';
         //$mail->addAttachment('images/phpmailer_mini.png');
         if (!$mail->send()) {
-            echo 'Mailer Error: ' . $mail->ErrorInfo;
+            //echo 'Mailer Error: ' . $mail->ErrorInfo;
+            $data['mailstatus']= "Email message not sent.";
         } else {
-            echo 'Message sent!';
+            //echo 'Message sent!';
             $data['mailstatus']= "Email message sent.";
         }        
     }    

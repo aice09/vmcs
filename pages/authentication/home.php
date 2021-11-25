@@ -82,6 +82,7 @@
                 },
                 success : function(data,status){
                     var module1 = JSON.parse(data);
+                    console.log(module1);
                     if (data!=999) {
                         $("#login_button").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; Signing In ...');
                         setTimeout(' window.location.href = "index.php"; ',1000);
@@ -89,6 +90,7 @@
                         $("#error").fadeIn(1000, function(){                        
                             $("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; Email or password does not exist. Or email not yet verified!</div>');
                             $("#login_button").html('Sign In');
+                            
                         });
                     }
                 }

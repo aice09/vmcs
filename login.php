@@ -46,6 +46,11 @@ switch ($view) {
         $title="Reset Password";  
         $content='pages/authentication/resetpassword.php';        
         break;
+    
+    case 'verifyemail' :
+        $title="Verify Email";  
+        $content='pages/authentication/verifyemail.php';        
+        break;
 
     default :
         $title="Home";  
