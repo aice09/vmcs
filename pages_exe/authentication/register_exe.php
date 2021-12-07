@@ -52,6 +52,7 @@ if (isset($_POST['submit_btn'])) {
         $useremail = $_POST["user_email"];
         $usersalt = $salt;        
         $userpass = $hash_password;
+        $usercategory = 3; //1 admin 2 vet 3 customer
         $userstatus = 'unactivated';    
 
         $query="INSERT INTO users (
@@ -62,6 +63,7 @@ if (isset($_POST['submit_btn'])) {
             useremail, 
             usersalt, 
             userpass, 
+            usercategory,
             userstatus) 
             VALUES (
             '$username', 
@@ -71,6 +73,7 @@ if (isset($_POST['submit_btn'])) {
             '$useremail', 
             '$usersalt', 
             '$userpass', 
+            '$usercategory',
             '$userstatus'
         )";
 
