@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `appointment_vet` (
 -- Dumping structure for table vmcs.pets
 DROP TABLE IF EXISTS `pets`;
 CREATE TABLE IF NOT EXISTS `pets` (
-  `pet_id` int(11) NOT NULL,
+  `pet_id` int(11) NOT NULL AUTO_INCREMENT,
   `pet_code` varchar(50) DEFAULT NULL,
   `pet_catid` varchar(50) DEFAULT NULL,
   `pet_name` text DEFAULT NULL,
@@ -63,9 +63,9 @@ CREATE TABLE IF NOT EXISTS `pets` (
   `pet_rescuedfrom` varchar(50) DEFAULT NULL,
   `pet_processdate` varchar(50) DEFAULT NULL,
   `pet_processby` varchar(50) DEFAULT NULL,
-  `pet_status` enum('In Custody','Adopted') DEFAULT NULL,
+  `pet_status` enum('In Custody','Adopted','Deleted') DEFAULT NULL,
   PRIMARY KEY (`pet_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
@@ -74,8 +74,11 @@ DROP TABLE IF EXISTS `pet_category`;
 CREATE TABLE IF NOT EXISTS `pet_category` (
   `petcat_id` int(11) NOT NULL AUTO_INCREMENT,
   `petcat_name` text DEFAULT NULL,
+  `petcat_processdate` varchar(50) DEFAULT NULL,
+  `petcat_processby` varchar(50) DEFAULT NULL,
+  `petcat_status` enum('Active','Inactive','Deleted') DEFAULT NULL,
   PRIMARY KEY (`petcat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 

@@ -13,10 +13,22 @@ switch ($view) {
         $title="Vitamins";  
         $content='pages/sys_user_dashboard/vitamins.php';        
         break;
+    
+        case 'veterinarians' :
+            $title="Veterinarians";  
+            $content='pages/sys_user_dashboard/vets.php';        
+            break;
+
     case 'pets' :
             $title="Pets";  
             $content='pages/sys_user_dashboard/pets.php';        
             break;
+
+    case 'pets-category' :
+            $title="Pets Category";
+            $content='pages/sys_user_dashboard/petscategory.php';        
+            break;
+
     default :
         $title="Home";  
         $content ='pages/sys_user_dashboard/home.php';     

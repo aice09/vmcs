@@ -148,6 +148,7 @@
 								<select name="pet_status" id="pet_status" class="form-control">
 									<option value="In Custody">In Custody</option>
 									<option value="Adopted">Adopted</option>
+									<option value="Deleted">Deleted</option>
 								</select>
 							</div>
 						</div>
@@ -192,22 +193,131 @@ $(document).ready(function() {
         $("#section_btn").attr('name', 'submit_btn');
         $("#section_btn").attr('data-id', '');
 
-        $("#machine").val('');
-        $("#color").val('');
-        $("#widthinch").val('');
-        $("#widthmm").val('');
-        $("#cylindertype").val($("#cylindertype option:first").val());
-        $("#spec").val('');
-        $("#qty").val('');
-        $("#plate").val('');
-        $("#dstape").val('');
-        $("#distortion").val('');
-        $("#machid").val('');
+        $("#pet_code").val('');
+        $("#pet_catid").val($("#pet_catid option:first").val());
+        $("#pet_name").val('');
+        $("#pet_adopted").val($("#pet_adopted option:first").val());
+        $("#pet_adoptedfrom").val($("#pet_adoptedfrom option:first").val());
+        $("#pet_rescuedfrom").val('');
+        $("#pet_processdate").val('');
+        $("#pet_processby").val('');
+        $("#pet_status").val($("#pet_status option:first").val());
+        $("#pet_id").val('');
 
         theform.resetForm();
 
         $("#modal-id").modal("show");
     });
+
+	//Adding Validation
+    $("#section-form").validate({
+        rules: {
+            pet_code: {
+                required: true
+            },
+            pet_name: {
+                required: true
+            },  
+        },
+        messages: {
+            pet_code: {
+                required: "Please make sure pet code not empty "
+            },
+            pet_name: {
+                required: "Please make sure pet name not empty"
+            },
+        },
+        submitHandler: submitForm
+    });
+
+    function submitForm() {
+        var data = $("#section-form").serialize();
+        console.log(data);
+        $.ajax({
+            type: 'POST',
+            url: 'pages_exe/sys_user_dashboard/pets_exe_crud.php',
+            data: data,
+            success: function(data, status) {
+                if (data != 999) {
+                    console.log(data);
+                    $("#modal-id").modal("hide");
+                    //reload server-side datatable
+                    setTimeout(function() {
+                        $('#example').DataTable().ajax.reload();
+                    }, 1000);
+                } else {
+                    console.log(data);
+                    alert('error');
+                }
+            }
+        });
+        return false;
+    }
+
+	//Update
+    $(document).on('click', '#update', function(e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        action = 'read_selected';
+
+        $.ajax({
+            type: 'POST',
+            url: "pages_exe/sys_user_dashboard/pets_exe_crud.php",
+            data: {
+                read_selected: action,
+                crud_id: id
+            },
+            success: function(data, status) {
+                console.log(data);
+                var cruddata = JSON.parse(data);
+				//parse json data
+				$("#pet_code").val(cruddata.pet_code);
+				$("#pet_catid").val(cruddata.pet_catid);
+				$("#pet_name").val(cruddata.pet_name);
+				$("#pet_adopted").val(cruddata.pet_adopted);
+				$("#pet_adoptedfrom").val(cruddata.pet_adoptedfrom);
+				$("#pet_rescuedfrom").val(cruddata.pet_rescuedfrom);
+				$("#pet_processdate").val(cruddata.pet_processdate);
+				$("#pet_processby").val(cruddata.pet_processby);
+				$("#pet_status").val(cruddata.pet_status);
+				$("#pet_id").val(cruddata.pet_id);
+
+
+
+                $("#section_btn").attr('name', 'update_btn');
+                $("#section_btn").attr('data-id', cruddata.job_id);
+                $(".modal-title").text('Edit');
+                $("#section_btn").text('Save Changes');
+                $("#modal-id").modal("show");
+            }
+        });
+    });
+
+	//Delete
+    $(document).on('click', '#delete', function(e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        var conf = confirm("Are you sure, do you really want to delete these?");
+        if (conf == true) {
+            var action = "delete";
+            $.ajax({
+                type: 'POST',
+                url: "pages_exe/sys_user_dashboard/pets_exe_crud.php",
+                data: {
+                    delete_selected: action,
+                    crud_id: id,
+                },
+                success: function(data, status) {
+                    //reload server-side datatable
+                    setTimeout(function() {
+                        $('#example').DataTable().ajax.reload();
+                    }, 1000);
+                }
+            });
+        }
+    });
+
 });
+
 
 </script>

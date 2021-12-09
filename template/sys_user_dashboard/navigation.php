@@ -38,10 +38,27 @@
                             <a href="dashboard.php"><i class="fa fa-sliders fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
+                            <a href="dashboard.php?page=veterinarians"><i class="fa fa-address-card-o fa-fw"></i> Veterinarians</a>
+                        </li>
+                        <li>
+                            <a href="dashboard.php?page=customers"><i class="fa fa-address-book-o fa-fw"></i> Customers</a>
+                        </li>
+                        <li>
                             <a href="dashboard.php?page=appointment"><i class="fa fa-calendar fa-fw"></i> Appointment</a>
                         </li>
                         <li>
                             <a href="dashboard.php?page=pets"><i class="fa  fa-optin-monster fa-fw"></i> Pets</a>
+                        </li>
+                        <li>
+                            <a href="dashboard.php?page=pets-category"><i class="fa  fa-optin-monster fa-fw"></i> Pets Category</a>
+                        </li>
+                        
+                        <li>
+                            <a href="dashboard.php?page=stocks"><i class="fa  fa-cube fa-fw"></i> Stocks</a>
+                        </li>
+                        
+                        <li>
+                            <a href="dashboard.php?page=stocks-category"><i class="fa  fa-cube fa-fw"></i> Stocks Category</a>
                         </li>
                         <li class="nav_foldericon">
                             <a href="#"><i  class="fa fa-folder-o fa-fw"></i> Sales <span class="fa arrow"></span></a>
