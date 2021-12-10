@@ -43,6 +43,10 @@
                         <li>
                             <a href="dashboard.php?page=customers"><i class="fa fa-address-book-o fa-fw"></i> Customers</a>
                         </li>
+                        
+                        <li>
+                            <a href="dashboard.php?page=admin"><i class="fa fa-address-book-o fa-fw"></i> Admin</a>
+                        </li>
                         <li>
                             <a href="dashboard.php?page=appointment"><i class="fa fa-calendar fa-fw"></i> Appointment</a>
                         </li>

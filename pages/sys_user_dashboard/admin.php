@@ -1,12 +1,12 @@
 <br>
 <ol class="breadcrumb">
   <li><a href="dashboard.php">Home</a></li>
-  <li>Veterinarians</li>
+  <li>Administrator</li>
 </ol>
 
-<h1>Veterinarians</h1>
+<h1>Administrator</h1>
 
-<button type="button" class="btn btn-success create-new">Add New Vet</button><br><br>
+<button type="button" class="btn btn-success create-new">Add New Customer</button><br><br>
 <table class="table table-bordered responsive nowrap" id="example" width="100%">
 	<thead> 
 		<tr>
@@ -204,7 +204,7 @@ $(document).ready(function() {
         "processing": true,
         "serverSide": true,
         "ajax": {
-            url: "pages_exe/sys_user_dashboard/vets_exe_dt.php",
+            url: "pages_exe/sys_user_dashboard/admin_exe_dt.php",
             type: "POST"
         }
     });
@@ -313,7 +313,7 @@ $(document).ready(function() {
         console.log(data);
         $.ajax({
             type: 'POST',
-            url: 'pages_exe/sys_user_dashboard/vets_exe_crud.php',
+            url: 'pages_exe/sys_user_dashboard/admin_exe_crud.php',
             data: data,
             success: function(data, status) {
                 if (data != 999) {
@@ -340,7 +340,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'POST',
-            url: "pages_exe/sys_user_dashboard/vets_exe_crud.php",
+            url: "pages_exe/sys_user_dashboard/admin_exe_crud.php",
             data: {
                 read_selected: action,
                 crud_id: id
@@ -429,7 +429,7 @@ $(document).ready(function() {
         console.log(data);
         $.ajax({
             type: 'POST',
-            url: 'pages_exe/sys_user_dashboard/vets_exe_crud.php',
+            url: 'pages_exe/sys_user_dashboard/admin_exe_crud.php',
             data: data,
             success: function(data, status) {
                 if (data != 999) {
@@ -458,7 +458,7 @@ $(document).ready(function() {
             var action = "delete";
             $.ajax({
                 type: 'POST',
-                url: "pages_exe/sys_user_dashboard/vets_exe_crud.php",
+                url: "pages_exe/sys_user_dashboard/admin_exe_crud.php",
                 data: {
                     delete_selected: action,
                     crud_id: id,
@@ -483,7 +483,7 @@ $(document).ready(function() {
             var randomstring = Math.random().toString(36).slice(-8);
             $.ajax({
                 type: 'POST',
-                url: "pages_exe/sys_user_dashboard/vets_exe_crud.php",
+                url: "pages_exe/sys_user_dashboard/admin_exe_crud.php",
                 data: {
                     resetpass_selected: action,
                     newpassword: randomstring,

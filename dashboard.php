@@ -19,6 +19,16 @@ switch ($view) {
             $content='pages/sys_user_dashboard/vets.php';        
             break;
 
+        case 'customers' :
+            $title="Customers";  
+            $content='pages/sys_user_dashboard/customers.php';        
+            break;
+
+        case 'admin' :
+            $title="Administrator";  
+            $content='pages/sys_user_dashboard/admin.php';        
+            break;
+
     case 'pets' :
             $title="Pets";  
             $content='pages/sys_user_dashboard/pets.php';        
