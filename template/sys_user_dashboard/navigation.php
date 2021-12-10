@@ -48,6 +48,9 @@
                             <a href="dashboard.php?page=admin"><i class="fa fa-address-book-o fa-fw"></i> Admin</a>
                         </li>
                         <li>
+                            <a href="dashboard.php?page=schedule"><i class="fa fa-calendar fa-fw"></i> My Schedule</a>
+                        </li>
+                        <li>
                             <a href="dashboard.php?page=appointment"><i class="fa fa-calendar fa-fw"></i> Appointment</a>
                         </li>
                         <li>
