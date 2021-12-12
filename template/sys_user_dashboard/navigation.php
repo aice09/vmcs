@@ -59,7 +59,9 @@
                         <li>
                             <a href="dashboard.php?page=pets-category"><i class="fa  fa-optin-monster fa-fw"></i> Pets Category</a>
                         </li>
-                        
+                        <li>
+                            <a href="dashboard.php?page=breeding"><i class="fa  fa-optin-monster fa-fw"></i> Breeding</a>
+                        </li>
                         <li>
                             <a href="dashboard.php?page=stocks"><i class="fa  fa-cube fa-fw"></i> Stocks</a>
                         </li>
@@ -67,7 +69,7 @@
                         <li>
                             <a href="dashboard.php?page=stocks-category"><i class="fa  fa-cube fa-fw"></i> Stocks Category</a>
                         </li>
-                        <li class="nav_foldericon">
+                        <!-- <li class="nav_foldericon">
                             <a href="#"><i  class="fa fa-folder-o fa-fw"></i> Sales <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li> <a href="index.php?page=jobs">Job Tickets</a></li>
@@ -79,7 +81,7 @@
                                 <li> <a href="index.php?page=ppress-todo">To Do</a></li>
                                 <li> <a href="index.php?page=ppress-done">Done</a></li>
                             </ul>
-                        </li>                             
+                        </li>  -->                            
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
