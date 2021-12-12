@@ -8,14 +8,16 @@ if (isset($_POST['submit_btn'])) {
 	$pet_name = $_POST["pet_name"];
 	$pet_adopted = $_POST["pet_adopted"];
 	$pet_adoptedfrom = $_POST["pet_adoptedfrom"];
-	$pet_rescuedfrom = $_POST["pet_rescuedfrom"];
+	$pet_rescuedfrom = $_POST["pet_rescuedfrom"];    
+	$pet_birthday = $_POST["pet_birthday"];
+	$pet_gender = $_POST["pet_gender"];
 	$pet_processdate = $currentdate;
 	$pet_processby = $_SESSION['system_userid'];
 	$pet_status = $_POST["pet_status"];
 
 
     //Insert Data
-    $query = "INSERT INTO pets (pet_code, pet_catid, pet_name, pet_adopted, pet_adoptedfrom, pet_rescuedfrom, pet_processdate, pet_processby, pet_status) VALUES ('$pet_code', '$pet_catid', '$pet_name', '$pet_adopted', '$pet_adoptedfrom', '$pet_rescuedfrom', '$pet_processdate', '$pet_processby', '$pet_status')";
+    $query = "INSERT INTO pets (pet_code, pet_catid, pet_name, pet_adopted, pet_adoptedfrom, pet_rescuedfrom, pet_birthday, pet_gender,pet_processdate, pet_processby, pet_status) VALUES ('$pet_code', '$pet_catid', '$pet_name', '$pet_adopted', '$pet_adoptedfrom', '$pet_rescuedfrom', '$pet_birthday', '$pet_gender','$pet_processdate', '$pet_processby', '$pet_status')";
   
 		$response = array();
 	if (!$result = mysqli_query($db,$query)) {
@@ -58,11 +60,13 @@ if (isset($_POST['update_btn'])) {
     $pet_adopted = $_POST["pet_adopted"];
     $pet_adoptedfrom = $_POST["pet_adoptedfrom"];
     $pet_rescuedfrom = $_POST["pet_rescuedfrom"];
+	$pet_birthday = $_POST["pet_birthday"];
+	$pet_gender = $_POST["pet_gender"];
     $pet_processdate = $currentdate;
     $pet_processby = $_SESSION['system_userid'];
     $pet_status = $_POST["pet_status"];
 
-    $query = "UPDATE pets SET pet_code = '$pet_code', pet_catid = '$pet_catid', pet_name = '$pet_name', pet_adopted = '$pet_adopted', pet_adoptedfrom = '$pet_adoptedfrom', pet_rescuedfrom = '$pet_rescuedfrom', pet_processdate = '$pet_processdate', pet_processby = '$pet_processby', pet_status = '$pet_status' WHERE pet_id = '$id'";
+    $query = "UPDATE pets SET pet_code = '$pet_code', pet_catid = '$pet_catid', pet_name = '$pet_name', pet_adopted = '$pet_adopted', pet_adoptedfrom = '$pet_adoptedfrom', pet_rescuedfrom = '$pet_rescuedfrom', pet_birthday = '$pet_birthday', pet_gender = '$pet_gender', pet_processdate = '$pet_processdate', pet_processby = '$pet_processby', pet_status = '$pet_status' WHERE pet_id = '$id'";
 
 	if (!$result1 = mysqli_query($db,$query)) {
         exit(mysqli_error());

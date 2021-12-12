@@ -1,43 +1,39 @@
 <br>
 <ol class="breadcrumb">
   <li><a href="dashboard.php">Home</a></li>
-  <li>Pets</li>
+  <li>Stocks</li>
 </ol>
 
-<h1>Pets</h1>
+<h1>Stocks</h1>
 
-<button type="button" class="btn btn-success create-new">Add New Pet</button><br><br>
+<button type="button" class="btn btn-success create-new">Add New Stocks</button><br><br>
 <table class="table table-bordered responsive nowrap" id="example" width="100%">
 	<thead> 
 		<tr>
 			<th width="3%">No</th>
-			<th width="6%">Pet Code</th>
+			<th width="6%">Stock Code</th>
 			<th width="6%">Category</th>
-			<th width="15%">Name</th>
-			<th width="15%">Adopted</th>
-			<th width="15%">Adopted from</th>
-			<th width="15%">Rescued from</th>
-			<th width="6%">Birthday</th>
-			<th width="6%">Gender</th>
+			<th width="6%">Name</th>
+			<th width="6%">Quantity</th>
+			<th width="6%">Price</th>
+			<th width="6%">Expiration Date</th>
 			<th width="6%">Process Date</th>
-			<th width="15%">Processed by</th>
+			<th width="6%">Processed by</th>
 			<th width="6%">Status</th>
 			<th></th>
 		</tr>
 	</thead>
 	<tfoot>
 		<tr>
-			<th width="3%">No</th>
-			<th width="6%">Pet Code</th>
+            <th width="3%">No</th>
+			<th width="6%">Stock Code</th>
 			<th width="6%">Category</th>
-			<th width="15%">Name</th>
-			<th width="15%">Adopted</th>
-			<th width="15%">Adopted from</th>
-			<th width="15%">Rescued from</th>
-			<th width="6%">Birthday</th>
-			<th width="6%">Gender</th>
+			<th width="6%">Name</th>
+			<th width="6%">Quantity</th>
+			<th width="6%">Price</th>
+			<th width="6%">Expiration Date</th>
 			<th width="6%">Process Date</th>
-			<th width="15%">Processed by</th>
+			<th width="6%">Processed by</th>
 			<th width="6%">Status</th>
 			<th></th>
 		</tr>
@@ -56,18 +52,18 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<div class="form-group">
-								<label for="">Pet Code</label>
-								<input type="text" class="form-control" placeholder="Pet Code" name="pet_code" id="pet_code"/>
+								<label for="">Item Code</label>
+								<input type="text" class="form-control" placeholder="Item Code" name="stock_code" id="stock_code"/>
 								<span id="check-e" class="check-e-schednumber"></span>
 							</div>
 						</div>            
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<div class="form-group">
 								<label for="">Category</label>
-								<select name="pet_catid" id="pet_catid" class="form-control">
+								<select name="stock_catid" id="stock_catid" class="form-control">
 									<?php 
 											$data1 = "";
-											$query1 = "SELECT * FROM pet_category ORDER BY petcat_name ASC";
+											$query1 = "SELECT * FROM stocks_category ORDER BY stockcat_name ASC";
 
 											if (!$result1 = mysqli_query($db,$query1)) {
 												exit(mysqli_error());
@@ -76,7 +72,7 @@
 											if(mysqli_num_rows($result1) > 0) {
 												while($row1 = mysqli_fetch_assoc($result1))
 												{
-													$data1 .= '<option value="'.$row1['petcat_id'].'">'.$row1['petcat_name'].'</option>';
+													$data1 .= '<option value="'.$row1['stockcat_id'].'">'.$row1['stockcat_name'].'</option>';
 												}
 											} else
 											{
@@ -89,77 +85,44 @@
 						</div>   
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<div class="form-group">
-								<label for="">Pet Name</label>
-								<input type="text" class="form-control" placeholder="Pet Name" name="pet_name" id="pet_name"/>
+								<label for="">Item Name</label>
+								<input type="text" class="form-control" placeholder="Item Name" name="stock_name" id="stock_name"/>
 							</div>
-						</div>        
+						</div> 
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<div class="form-group">
-								<label for="">Adopted?</label>
-								<select name="pet_adopted" id="pet_adopted" class="form-control">
-									<option value="Adopted">Yes</option>
-									<option value="Rescued">Rescued</option>
-								</select>
+								<label for="">Item Quantity</label>
+								<input type="text" class="form-control" placeholder="Item Quantity" name="stock_quantity" id="stock_quantity"/>
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<div class="form-group">
-								<label for="">Adopted From?</label>
-								<select name="pet_adoptedfrom" id="pet_adoptedfrom" class="form-control">
-										<?php 
-											$data2 = "";
-											$query2 = "SELECT * FROM users ORDER BY userfirstname ASC";
-
-											if (!$result2 = mysqli_query($db,$query2)) {
-												exit(mysqli_error());
-											}
-										
-											if(mysqli_num_rows($result2) > 0) {
-												while($row2 = mysqli_fetch_assoc($result2))
-												{
-													$data2 .= '<option value="'.$row2['userid'].'">'.$row2['userfirstname'].' '.$row2['userlastname'].'</option>';
-												}
-											} else
-											{
-												$data2 .="";
-											}
-											echo $data2;                                                                            
-										?>
-								</select>
+								<label for="">Item Price</label>
+								<div class="input-group" >
+                                    <span class="input-group-addon">
+									&#8369;
+                                    </span>
+                                    <input type="text" class="form-control " placeholder="Item Price" name="stock_price" id="stock_price" />                                
+                                </div>
 							</div>
-						</div>	
+						</div> 	
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<div class="form-group">
-								<label for="">Rescued From?</label>
-								<input type="text" class="form-control" placeholder="Rescued From" name="pet_rescuedfrom" id="pet_rescuedfrom"/>
-							</div>
-						</div>	
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<div class="form-group">
-								<label for="">Birthday</label>
-								<div class="input-group date" id="petbday" data-target-input="nearest">
-                                    <span class="input-group-addon" data-target="#petbday" data-toggle="datetimepicker">
+								<label for="">Expiration Date</label>
+								<div class="input-group date" id="stockexpiration" data-target-input="nearest">
+                                    <span class="input-group-addon" data-target="#stockexpiration" data-toggle="datetimepicker">
                                         <span class="fa fa-calendar"></span>
                                     </span>
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#petbday" placeholder="Birthday" name="pet_birthday" id="pet_birthday" />                                
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#stockexpiration" placeholder="Expiration Date" name="stock_expirationdate" id="stock_expirationdate" />                                
                                 </div>
 							</div>
 						</div>	
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<div class="form-group">
-								<label for="">Gender</label>
-								<select name="pet_gender" id="pet_gender" class="form-control">
-									<option value="Male">Male</option>
-									<option value="Female">Female</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<div class="form-group">
 								<label for="">Status</label>
-								<select name="pet_status" id="pet_status" class="form-control">
-									<option value="In Custody">In Custody</option>
-									<option value="Adopted">Adopted</option>
+								<select name="stock_status" id="stock_status" class="form-control">
+									<option value="Active">Active</option>
+									<option value="Inactive">Inactive</option>
 									<option value="Deleted">Deleted</option>
 								</select>
 							</div>
@@ -168,7 +131,7 @@
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="display: none;">
 							<div class="form-group">
 								<label for="">ID</label>
-								<input type="text" class="form-control" placeholder="ID" name="pet_id" id="pet_id" value="" />
+								<input type="text" class="form-control" placeholder="ID" name="stock_id" id="stock_id" value="" />
 								<span id="check-e"></span>
 							</div>
 						</div>
@@ -185,7 +148,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	$('#petbday').datetimepicker({
+	$('#stockexpiration').datetimepicker({
         format: 'L'
     });
 
@@ -194,7 +157,7 @@ $(document).ready(function() {
         "processing": true,
         "serverSide": true,
         "ajax": {
-            url: "pages_exe/sys_user_dashboard/pets_exe_dt.php",
+            url: "pages_exe/sys_user_dashboard/stocks_exe_dt.php",
             type: "POST"
         }
     });
@@ -209,16 +172,14 @@ $(document).ready(function() {
         $("#section_btn").attr('name', 'submit_btn');
         $("#section_btn").attr('data-id', '');
 
-        $("#pet_code").val('');
-        $("#pet_catid").val($("#pet_catid option:first").val());
-        $("#pet_name").val('');
-        $("#pet_adopted").val($("#pet_adopted option:first").val());
-        $("#pet_adoptedfrom").val($("#pet_adoptedfrom option:first").val());
-        $("#pet_rescuedfrom").val('');
-        $("#pet_birthday").val('');
-        $("#pet_gender").val($("#pet_gender option:first").val());
-        $("#pet_status").val($("#pet_status option:first").val());
-        $("#pet_id").val('');
+        $("#stock_code").val('');
+        $("#stock_catid").val($("#stock_catid option:first").val());
+        $("#stock_name").val('');
+        $("#stock_quantity").val('');
+        $("#stock_price").val('');
+        $("#stock_expirationdate").val('');
+        $("#stock_status").val($("#stock_status option:first").val());
+        $("#stock_id").val('');
 
         theform.resetForm();
 
@@ -228,20 +189,88 @@ $(document).ready(function() {
 	//Adding Validation
     $("#section-form").validate({
         rules: {
-            pet_code: {
-                required: true
-            },
-            pet_name: {
-                required: true
-            },  
+			//rules
+			stock_code: {
+				required: true,
+				minlength: 3,
+				maxlength: 10/* ,
+				remote: {
+					url: "pages_exe/sys_user_dashboard/stocks_exe_dt.php",
+					type: "POST",
+					data: {
+						stock_code: function() {
+							return $("#stock_code").val();
+						},
+						stock_id: function() {
+							return $("#stock_id").val();
+						},
+						action: function() {
+							return 'check_stock_code';
+						}
+					}
+				} */
+			},
+			stock_catid: {
+				required: true
+			},
+			stock_name: {
+				required: true,
+				minlength: 3,
+				maxlength: 50
+			},
+			stock_quantity: {
+				required: true,
+				minlength: 1,
+				maxlength: 10
+			},
+			stock_price: {
+				number: true,
+				required: true,
+				minlength: 1,
+				maxlength: 10
+			},
+			stock_expirationdate: {
+				required: false,
+				minlength: 1,
+				maxlength: 10
+			},
+			stock_status: {
+				required: true
+			},
         },
         messages: {
-            pet_code: {
-                required: "Please make sure pet code not empty "
-            },
-            pet_name: {
-                required: "Please make sure pet name not empty"
-            },
+			//messages
+			stock_code: {
+				required: "Please enter a code",
+				minlength: "Your code must consist of at least 3 characters",
+				maxlength: "Your code must be less than 10 characters",
+				remote: "This code is already in use"
+			},
+			stock_catid: {
+				required: "Please select a category"
+			},
+			stock_name: {
+				required: "Please enter a name",
+				minlength: "Your name must consist of at least 3 characters",
+				maxlength: "Your name must be less than 50 characters"
+			},
+			stock_quantity: {
+				required: "Please enter a quantity",
+				minlength: "Your quantity must consist of at least 1 characters",
+				maxlength: "Your quantity must be less than 10 characters"
+			},
+			stock_price: {
+				required: "Please enter a price",
+				minlength: "Your price must consist of at least 1 characters",
+				maxlength: "Your price must be less than 10 characters"
+			},
+			stock_expirationdate: {
+				minlength: "Your expiration date must consist of at least 1 characters",
+				maxlength: "Your expiration date must be less than 10 characters"
+			},
+			stock_status: {
+				required: "Please select a status"
+			},		
         },
         submitHandler: submitForm
     });
@@ -251,7 +280,7 @@ $(document).ready(function() {
         console.log(data);
         $.ajax({
             type: 'POST',
-            url: 'pages_exe/sys_user_dashboard/pets_exe_crud.php',
+            url: 'pages_exe/sys_user_dashboard/stocks_exe_crud.php',
             data: data,
             success: function(data, status) {
                 if (data != 999) {
@@ -278,7 +307,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'POST',
-            url: "pages_exe/sys_user_dashboard/pets_exe_crud.php",
+            url: "pages_exe/sys_user_dashboard/stocks_exe_crud.php",
             data: {
                 read_selected: action,
                 crud_id: id
@@ -287,16 +316,16 @@ $(document).ready(function() {
                 console.log(data);
                 var cruddata = JSON.parse(data);
 				//parse json data
-				$("#pet_code").val(cruddata.pet_code);
-				$("#pet_catid").val(cruddata.pet_catid);
-				$("#pet_name").val(cruddata.pet_name);
-				$("#pet_adopted").val(cruddata.pet_adopted);
-				$("#pet_adoptedfrom").val(cruddata.pet_adoptedfrom);
-				$("#pet_rescuedfrom").val(cruddata.pet_rescuedfrom);
-				$("#pet_birthday").val(cruddata.pet_birthday);
-				$("#pet_gender").val(cruddata.pet_gender);
-				$("#pet_status").val(cruddata.pet_status);
-				$("#pet_id").val(cruddata.pet_id);
+				$("#stock_code").val(cruddata.stock_code);
+				$("#stock_catid").val(cruddata.stock_catid);
+				$("#stock_name").val(cruddata.stock_name);
+				$("#stock_quantity").val(cruddata.stock_quantity);
+				$("#stock_price").val(cruddata.stock_price);
+				$("#stock_expirationdate").val(cruddata.stock_expirationdate);
+				$("#pet_processdate").val(cruddata.pet_processdate);
+				$("#pet_processby").val(cruddata.pet_processby);
+				$("#stock_status").val(cruddata.stock_status);
+				$("#stock_id").val(cruddata.stock_id);
 
 
 
@@ -318,7 +347,7 @@ $(document).ready(function() {
             var action = "delete";
             $.ajax({
                 type: 'POST',
-                url: "pages_exe/sys_user_dashboard/pets_exe_crud.php",
+                url: "pages_exe/sys_user_dashboard/stocks_exe_crud.php",
                 data: {
                     delete_selected: action,
                     crud_id: id,

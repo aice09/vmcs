@@ -4,23 +4,21 @@ include '../../config/database.php';
 
 $request=$_REQUEST;
 $col =array(
-    0   =>  'pet_id',
-    1   =>  'pet_code',
-    2   =>  'pet_catid',
-    3   =>  'pet_name',
-    4   =>  'pet_adopted',
-    5   =>  'pet_adoptedfrom',
-    6   =>  'pet_rescuedfrom',
-    7   =>  'pet_processdate',
-    8   =>  'pet_birthday',
-    9   =>  'pet_gender',
-    10   =>  'pet_processby',
-    11   =>  'pet_status'
+    0   =>  'stock_id',
+    1   =>  'stock_code',
+    2   =>  'stock_catid',
+    3   =>  'stock_name',
+    4   =>  'stock_quantity',
+    5   =>  'stock_price',
+    6   =>  'stock_expirationdate',
+    7   =>  'stock_processdate',
+    8   =>  'stock_processby',
+    9   =>  'stock_status'
 );  //create column like table in database
 
-$sql =" SELECT * FROM pets
+$sql =" SELECT * FROM stocks
         /*WHERE pet_updateddate != 'disable'*/
-        ORDER BY pet_id ASC;";
+        ORDER BY stock_id ASC;";
 $query=mysqli_query($db,$sql);
 
 $totalData=mysqli_num_rows($query);
@@ -28,23 +26,21 @@ $totalData=mysqli_num_rows($query);
 $totalFilter=$totalData;
 
 //Search
-$sql =" SELECT * FROM pets
+$sql =" SELECT * FROM stocks
         /*WHERE pet_updateddate != 'disable'*/
         WHERE 1=1
         ";
 
 if(!empty($request['search']['value'])){
-    $sql.=" AND (pet_code Like '%".$request['search']['value']."%' ";
-    $sql.=" OR pet_catid Like '%".$request['search']['value']."%' ";
-    $sql.=" OR pet_name Like '%".$request['search']['value']."%' ";
-    $sql.=" OR pet_adopted Like '%".$request['search']['value']."%'";
-    $sql.=" OR pet_adoptedfrom Like '%".$request['search']['value']."%' ";
-    $sql.=" OR pet_rescuedfrom Like '%".$request['search']['value']."%' ";
-    $sql.=" OR pet_birthday Like '%".$request['search']['value']."%' ";
-    $sql.=" OR pet_gender Like '%".$request['search']['value']."%' ";
-    $sql.=" OR pet_processdate Like '%".$request['search']['value']."%' ";
-    $sql.=" OR pet_processby Like '%".$request['search']['value']."%' ";
-    $sql.=" OR pet_status Like '%".$request['search']['value']."%' )";
+    $sql.=" AND (stock_code Like '%".$request['search']['value']."%' ";
+    $sql.=" OR stock_catid Like '%".$request['search']['value']."%' ";
+    $sql.=" OR stock_name Like '%".$request['search']['value']."%' ";
+    $sql.=" OR stock_quantity Like '%".$request['search']['value']."%'";
+    $sql.=" OR stock_price Like '%".$request['search']['value']."%' ";
+    $sql.=" OR stock_expirationdate Like '%".$request['search']['value']."%' ";
+    $sql.=" OR stock_processdate Like '%".$request['search']['value']."%' ";
+    $sql.=" OR stock_processby Like '%".$request['search']['value']."%' ";
+    $sql.=" OR stock_status Like '%".$request['search']['value']."%' )";
 }
 $query=mysqli_query($db,$sql);
 $totalData=mysqli_num_rows($query);
@@ -70,8 +66,6 @@ while($row=mysqli_fetch_array($query)){
     $subdata[]=$row[7];
     $subdata[]=$row[8];
     $subdata[]=$row[9];
-    $subdata[]=$row[10];
-    $subdata[]=$row[11];
     $subdata[]='<button type="button" class="btn btn-primary btn-sm" id="update" data-id="'.$row[0].'" >Edit</button>
                 <button type="button" class="btn btn-danger btn-sm" id="delete" data-id="'.$row[0].'" >Delete</button>';
     $data[]=$subdata;

@@ -49,7 +49,7 @@
 								<label for="">Scheduled Date</label>
 								<div class="input-group date" id="vetsched_date" data-target-input="nearest">
                                     <span class="input-group-addon" data-target="#vetsched_date" data-toggle="datetimepicker">
-                                        <span class="glyphicon glyphicon-calendar"></span>
+                                        <span class="fa fa-calendar"></span>
                                     </span>
                                     <input type="text" class="form-control datetimepicker-input" data-target="#vetsched_date" placeholder="Scheduled Date" id="sched_date" name="sched_date" />                                
                                 </div>

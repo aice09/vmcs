@@ -46,76 +46,34 @@
 				</div>
 				<div class="modal-body">
 					<div class="row">
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<div class="form-group">
-								<label for="">Scheduled Date</label>
-								<div class="input-group date" id="vetsched_date" data-target-input="nearest">
-                                    <span class="input-group-addon" data-target="#vetsched_date" data-toggle="datetimepicker">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#vetsched_date" placeholder="Scheduled Date" id="sched_date" name="sched_date" />                                
-                                </div>
-								<span id="check-e" class="check-e-schednumber"></span>
-							</div>
-						</div>            
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<div class="form-group">
-								<label for="">Start Time</label>
-								<div class="input-group date" id="vetsched_starttime" data-target-input="nearest">
-                                    <span class="input-group-addon" data-target="#vetsched_starttime" data-toggle="datetimepicker">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#vetsched_starttime" placeholder="Start Time" id="sched_starttime" name="sched_starttime" />                                
-                                </div>
-								<span id="check-e" class="check-e-schednumber"></span>
-							</div>
-						</div> 
+						
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<div class="form-group">
-								<label for="">End Time</label>
-								<div class="input-group date" id="vetsched_endtime" data-target-input="nearest">
-                                    <span class="input-group-addon" data-target="#vetsched_endtime" data-toggle="datetimepicker">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#vetsched_endtime" placeholder="End Time" id="sched_endtime" name="sched_endtime" />                                
-                                </div>
-								<span id="check-e" class="check-e-schednumber"></span>
+								<label for="">Reason for Appointment</label>                                
+                                <textarea name="appointment_reason" id="appointment_reason" class="form-control" rows="3" placeholder="Reason for Appointment"></textarea>
+                                
+							</div>
+						</div>
+                        <!--Vet ID-->
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="form-group">
+								<label for="">Vet</label>
+								<input type="text" class="form-control" placeholder="ID" name="appointment_vetid" id="appointment_vetid" />
+								<span id="check-e"></span>
 							</div>
 						</div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<div class="form-group">
-								<label for="">Consulting Time</label>
-								<select name="sched_consultingtime" id="sched_consultingtime" class="form-control">
-									<option value="5 Minutes">5 Minutes</option>
-									<option value="10 Minutes">10 Minutes</option>
-                                    <option value="15 Minutes">15 Minutes</option>
-									<option value="20 Minutes">20 Minutes</option>
-                                    <option value="25 Minutes">25 Minutes</option>
-									<option value="30 Minutes">30 Minutes</option>
-                                    <option value="35 Minutes">35 Minutes</option>
-									<option value="40 Minutes">40 Minutes</option>
-                                    <option value="45 Minutes">45 Minutes</option>
-									<option value="50 Minutes">50 Minutes</option>
-									<option value="55 Minutes">55 Minutes</option>
-									<option value="60 Minutes">60 Minutes</option>
-								</select>
-							</div>
-						</div> 
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<div class="form-group">
-								<label for="">Status</label>
-								<select name="sched_status" id="sched_status" class="form-control">
-									<option value="Active">Active</option>
-									<option value="Inactive">Inactive</option>
-									<option value="Deleted">Deleted</option>
-								</select>
+								<label for="">Sched ID</label>
+								<input type="text" class="form-control" placeholder="ID" name="appointment_schedid" id="appointment_schedid" />
+								<span id="check-e"></span>
 							</div>
 						</div>
 						<!--ID-->
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="display: none;">
 							<div class="form-group">
 								<label for="">ID</label>
-								<input type="text" class="form-control" placeholder="ID" name="sched_id" id="sched_id" value="" />
+								<input type="text" class="form-control" placeholder="ID" name="appointment_id" id="appointment_id" value="" />
 								<span id="check-e"></span>
 							</div>
 						</div>
@@ -142,8 +100,47 @@ $(document).ready(function() {
         }
     });
 
-	//Adding
-    $('.create-new').click(function() {
+	//Booknow
+    $(document).on('click', '#booknow', function(e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        action = 'read_selected';
+
+        $.ajax({
+            type: 'POST',
+            url: "pages_exe/sys_user_dashboard/appointment_exe_crud.php",
+            data: {
+                read_selected: action,
+                crud_id: id
+            },
+            success: function(data, status) {
+                console.log(data);
+                var cruddata = JSON.parse(data);
+                $('#appointment_vetid').val(cruddata.sched_vetid);
+                $('#appointment_schedid').val(cruddata.sched_id);
+				//parse json data
+                /* $("#sched_date").val(cruddata.sched_date);
+                $("#sched_starttime").val(cruddata.sched_starttime);
+                $("#sched_endtime").val(cruddata.sched_endtime);
+                $("#sched_consultingtime").val(cruddata.sched_consultingtime);
+                $("#sched_status").val(cruddata.sched_status);
+                $("#sched_id").val(cruddata.sched_id); */
+
+
+
+              /*   theform.resetForm(); */
+
+                $("#section_btn").attr('name', 'submit_btn');
+                $("#section_btn").attr('data-id', cruddata.sched_id);
+                $(".modal-title").text('Create Appointment');
+                $("#section_btn").text('Book Now');
+                $("#modal-id").modal("show");
+            }
+        });
+    });
+
+
+    $/* ('#booknow').click(function() {
         var action = $(this).attr("id");
         var theform = $("#section-form").validate();
 
@@ -162,32 +159,19 @@ $(document).ready(function() {
         theform.resetForm();
 
         $("#modal-id").modal("show");
-    });
+    }); */
 
 	//Adding Validation
     $("#section-form").validate({
         rules: {
-            sched_date: {
-                required: true
-            },
-            sched_starttime: {
-                required: true
-            },  
-            sched_endtime: {
-                required: true
-            },
-
+            appointment_reason: "required",
+            appointment_vetid: "required",
+            appointment_schedid: "required",
         },
         messages: {
-            sched_date: {
-                required: "Please enter date"
-            },
-            sched_starttime: {
-                required: "Please enter start time"
-            },
-            sched_endtime: {
-                required: "Please enter end time"
-            },
+            appointment_reason: "Please enter reason for appointment",
+            appointment_vetid: "Please enter vet id",
+            appointment_schedid: "Please enter sched id",
         },
         submitHandler: submitForm
     });
@@ -197,7 +181,7 @@ $(document).ready(function() {
         console.log(data);
         $.ajax({
             type: 'POST',
-            url: 'pages_exe/sys_user_dashboard/schedule_exe_crud.php',
+            url: 'pages_exe/sys_user_dashboard/appointment_exe_crud.php',
             data: data,
             success: function(data, status) {
                 if (data != 999) {
@@ -224,7 +208,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'POST',
-            url: "pages_exe/sys_user_dashboard/schedule_exe_crud.php",
+            url: "pages_exe/sys_user_dashboard/appointment_exe_crud.php",
             data: {
                 read_selected: action,
                 crud_id: id
@@ -261,7 +245,7 @@ $(document).ready(function() {
             var action = "delete";
             $.ajax({
                 type: 'POST',
-                url: "pages_exe/sys_user_dashboard/schedule_exe_crud.php",
+                url: "pages_exe/sys_user_dashboard/appointment_exe_crud.php",
                 data: {
                     delete_selected: action,
                     crud_id: id,

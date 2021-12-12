@@ -47,10 +47,22 @@ switch ($view) {
             $title="Pets Category";
             $content='pages/sys_user_dashboard/petscategory.php';        
             break;
+
             case 'breeding' :
                 $title="Breeding";
                 $content='pages/sys_user_dashboard/breeding.php';        
                 break;
+    
+                case 'stocks' :
+                    $title="Stocks";
+                    $content='pages/sys_user_dashboard/stocks.php';        
+                    break;
+
+            case 'stocks-category' :
+                $title="Stocks Category";
+                $content='pages/sys_user_dashboard/stockscategory.php';        
+                break;
+                
     default :
         $title="Home";  
         $content ='pages/sys_user_dashboard/home.php';     

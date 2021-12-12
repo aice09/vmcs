@@ -49,9 +49,15 @@
                         </li>
                         <li>
                             <a href="dashboard.php?page=schedule"><i class="fa fa-calendar fa-fw"></i> My Schedule</a>
+                        </li>                        
+                        <li>
+                            <a href="dashboard.php?page=vet-schedule"><i class="fa fa-calendar fa-fw"></i> Vet Customer Schedule</a>
                         </li>
                         <li>
                             <a href="dashboard.php?page=appointment"><i class="fa fa-calendar fa-fw"></i> Appointment</a>
+                        </li>                        
+                        <li>
+                            <a href="dashboard.php?page=customer-appointment"><i class="fa fa-calendar fa-fw"></i> CustomerAppointment</a>
                         </li>
                         <li>
                             <a href="dashboard.php?page=pets"><i class="fa  fa-optin-monster fa-fw"></i> Pets</a>
