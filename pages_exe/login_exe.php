@@ -37,7 +37,8 @@ if(isset($_POST['login_button'])) {
 		$_SESSION['system_userid'] = $row['userid'];
 		$_SESSION['system_userfirstname'] = $row['userfirstname'];
 		$_SESSION['system_usermiddlename'] = $row['usermiddlename'];
-		$_SESSION['system_userlastname'] = $row['userlastname'];
+		$_SESSION['system_userlastname'] = $row['userlastname'];		
+		$_SESSION['system_usercategory'] = $row['usercategory'];
 		$_SESSION['system_logged_in'] = true;	
 		$_SESSION['timestamp']=time(); //use this timestamp to check if the user was inactive for too long
 		

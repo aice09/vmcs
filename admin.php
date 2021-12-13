@@ -43,7 +43,7 @@ switch ($view) {
     
     default :
         $title="Home";  
-        $content ='pages/home.php';     
+        $content ='pages/sys_admin/home.php';     
 }
 
 require_once 'template/sys_admin/body.php';
